@@ -11,5 +11,5 @@ def select(input_list):
             else:
                 continue
     end = time.time()
-    print(f"select: {end - start:.6f}")
-    return input_list
+    print(f"선택 정렬: {input_list}")
+    print(f"총 소요시간: {end - start:.6f}")
