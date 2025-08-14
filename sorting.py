@@ -1,13 +1,13 @@
 def merge_sort(arr):
+    start_time = time.time()
     if len(arr) <= 1:
         return arr
 
     mid = len(arr) // 2
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
-
-    return merge(left, right)
-
+    print("병합 정렬: ",merge(left, right))
+    print("소요 시간: ",time.time()-start_time)
 
 def merge(left, right):
     result = []
@@ -23,5 +23,5 @@ def merge(left, right):
 
     result.extend(left[i:])
     result.extend(right[j:])
-
     return result
+
