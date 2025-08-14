@@ -1,28 +1,37 @@
-def merge_sort(arr):
+def merge_sort_with_time(arr):
     import time
-    start_time = time.time()
-    if len(arr) <= 1:
-        return arr
+    def merge_sort(lst):
+        if len(lst) <= 1:
+            return lst
 
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])
-    right = merge_sort(arr[mid:])
-    print("병합 정렬 결과:  \n",merge(left, right))
-    print("소요 시간: ",time.time()-start_time)
+        mid = len(lst) // 2
+        left_half = merge_sort(lst[:mid])
+        right_half = merge_sort(lst[mid:])
 
-def merge(left, right):
-    result = []
-    i = j = 0
+        return merge(left_half, right_half)
 
-    while i < len(left) and j < len(right):
-        if left[i] <= right[j]:
-            result.append(left[i])
-            i += 1
-        else:
-            result.append(right[j])
-            j += 1
+    def merge(left, right):
+        sorted_list = []
+        i = j = 0
 
-    result.extend(left[i:])
-    result.extend(right[j:])
-    return result
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                sorted_list.append(left[i])
+                i += 1
+            else:
+                sorted_list.append(right[j])
+                j += 1
 
+        sorted_list.extend(left[i:])
+        sorted_list.extend(right[j:])
+
+        return sorted_list
+
+    # 시간 측정 시작
+    start_time = time.perf_counter()
+    sorted_data = merge_sort(arr)
+    end_time = time.perf_counter()
+
+    # 결과 출력
+    print(f"병합 정렬 결과:\n{sorted_data}")
+    print(f"소요 시간: {end_time - start_time:.6f}초")
