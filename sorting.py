@@ -12,6 +12,7 @@ def quick_sort(data):
     import time
     a = data[:]  # 원본 복사
     start = time.perf_counter()
+
     def _qsort(low, high):
         if low < high:
             pivot = a[high]
@@ -24,6 +25,7 @@ def quick_sort(data):
             pi = i + 1
             _qsort(low, pi - 1)
             _qsort(pi + 1, high)
+
     _qsort(0, len(a) - 1)
     elapsed = time.perf_counter() - start
     print("퀵정렬 결과:")
@@ -55,9 +57,11 @@ def bubble_sort(data):
     print(a)
     print(f"소요 시간: {elapsed:.6f}초")
 
-#########################Quick##############################
+#########################Main##############################
 if __name__ == "__main__":
     data = load_data()
     quick_sort(data)  # 여기서 이미 결과와 시간 출력
     print()  # 줄 바꿈
     bubble_sort(data)  # 버블 정렬도 실행
+
+
