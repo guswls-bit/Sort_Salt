@@ -1,4 +1,5 @@
 def merge_sort(arr):
+    import time
     start_time = time.time()
     if len(arr) <= 1:
         return arr
@@ -6,7 +7,7 @@ def merge_sort(arr):
     mid = len(arr) // 2
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
-    print("병합 정렬: ",merge(left, right))
+    print("병합 정렬 결과:  \n",merge(left, right))
     print("소요 시간: ",time.time()-start_time)
 
 def merge(left, right):
