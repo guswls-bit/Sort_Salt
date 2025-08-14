@@ -71,6 +71,20 @@ def select(input_list):
     end = time.time()
     print(f"선택 정렬 결과: \n{input_list}")
     print(f"소요 시간: {end - start:.6f}초")
+#########################Insertion#############################
+def insertion_sort(a: list[int]) -> list[int]:
+    import time
+    start = time.time()
+    for i in range(1, len(a)):
+        key = a[i]
+        j = i - 1
+        while j >= 0 and a[j] > key:
+            a[j + 1] = a[j]
+            j -= 1
+        a[j + 1] = key
+    end = time.time()
+    print(f"삽입 정렬 결과: \n{a}")
+    print(f"소요 시간: {end - start:.6f}초")
 
 #########################Merge#############################
 def merge_sort_with_time(arr):
@@ -110,6 +124,7 @@ def merge_sort_with_time(arr):
     # 결과 출력
     print(f"병합 정렬 결과:\n{sorted_data}")
     print(f"소요 시간: {end_time - start_time:.6f}초")
+
 #########################Main##############################
 if __name__ == "__main__":
     data = load_data()
@@ -118,5 +133,7 @@ if __name__ == "__main__":
     bubble_sort(data)  # 버블 정렬도 실행
     print()
     select(data)
+    print()
+    insertion_sort(data)
     print()
     merge_sort_with_time(data)
