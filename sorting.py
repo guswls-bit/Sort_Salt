@@ -1,6 +1,10 @@
-##########################Quick############################
-def quick_sort(arr):
-    a = arr[:]  # 원본 복사
+##########################Quick#############################
+def quick_sort(data):
+    import time
+    a = data[:]  # 원본 복사
+
+    start = time.perf_counter()
+
     def _qsort(low, high):
         if low < high:
             pivot = a[high]
@@ -13,6 +17,12 @@ def quick_sort(arr):
             pi = i + 1
             _qsort(low, pi - 1)
             _qsort(pi + 1, high)
+
     _qsort(0, len(a) - 1)
-    return a
+
+    elapsed = time.perf_counter() - start
+
+    print("퀵정렬 결과:")
+    print(a)
+    print(f"소요 시간: {elapsed:.6f}초")
 #########################Quick##############################
