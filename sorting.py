@@ -1,3 +1,12 @@
+import re
+from time import perf_counter
+
+def load_data(path="data.txt"):
+    with open(path, "r", encoding="utf-8") as f:
+        s = f.read()
+    parts = re.split(r"[\s,]+", s.strip())
+    return [int(p) for p in parts if p != ""]
+
 ##########################Quick#############################
 def quick_sort(data):
     import time
@@ -26,3 +35,8 @@ def quick_sort(data):
     print(a)
     print(f"소요 시간: {elapsed:.6f}초")
 #########################Quick##############################
+
+if __name__ == "__main__":
+    data = load_data()
+    quick_sort(data)  # 여기서 이미 결과와 시간 출력
+
