@@ -1,27 +1,42 @@
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
+import re
+from time import perf_counter
 
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])
-    right = merge_sort(arr[mid:])
+def load_data(path="data.txt"):
+    with open(path, "r", encoding="utf-8") as f:
+        s = f.read()
+    parts = re.split(r"[\s,]+", s.strip())
+    return [int(p) for p in parts if p != ""]
 
-    return merge(left, right)
+##########################Quick#############################
+def quick_sort(data):
+    import time
+    a = data[:]  # 원본 복사
 
+    start = time.perf_counter()
 
-def merge(left, right):
-    result = []
-    i = j = 0
+    def _qsort(low, high):
+        if low < high:
+            pivot = a[high]
+            i = low - 1
+            for j in range(low, high):
+                if a[j] <= pivot:
+                    i += 1
+                    a[i], a[j] = a[j], a[i]
+            a[i+1], a[high] = a[high], a[i+1]
+            pi = i + 1
+            _qsort(low, pi - 1)
+            _qsort(pi + 1, high)
 
-    while i < len(left) and j < len(right):
-        if left[i] <= right[j]:
-            result.append(left[i])
-            i += 1
-        else:
-            result.append(right[j])
-            j += 1
+    _qsort(0, len(a) - 1)
 
-    result.extend(left[i:])
-    result.extend(right[j:])
+    elapsed = time.perf_counter() - start
 
-    return result
+    print("퀵정렬 결과:")
+    print(a)
+    print(f"소요 시간: {elapsed:.6f}초")
+#########################Quick##############################
+
+if __name__ == "__main__":
+    data = load_data()
+    quick_sort(data)  # 여기서 이미 결과와 시간 출력
+
